@@ -1,9 +1,15 @@
+import 'package:assignment/models/repository.dart';
 import 'package:assignment/widgets/repo_tile.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,7 +18,10 @@ class HomeScreen extends StatelessWidget {
       ),
       body: ListView.builder(
         itemBuilder: (context, index) {
-          return RepoTile();
+          return RepoTile(
+            repository: Repository(
+                name: 'Vini', description: 'Hello from the other side'),
+          );
         },
       ),
     );

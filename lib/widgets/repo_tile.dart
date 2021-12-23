@@ -1,7 +1,9 @@
+import 'package:assignment/models/repository.dart';
 import 'package:flutter/material.dart';
 
 class RepoTile extends StatelessWidget {
-  const RepoTile({Key? key}) : super(key: key);
+  final Repository repository;
+  const RepoTile({required this.repository, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,34 +34,37 @@ class RepoTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'tivi',
+                  repository.name,
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                 ),
                 Text(
-                  'Tivi is a work in progress TV show android tracking App',
+                  repository.description,
                   style: TextStyle(
                       color: Colors.grey[600], fontWeight: FontWeight.w500),
                 ),
                 Row(
                   children: [
-                    Icon(Icons.code),
-                    SizedBox(
-                      width: 5.0,
-                    ),
-                    Text(
-                      'Kotlin',
-                      style: TextStyle(
-                          color: Colors.grey[600], fontWeight: FontWeight.w500),
-                    ),
-                    SizedBox(
-                      width: 15.0,
-                    ),
+                    if (repository.language != null) ...[
+                      Icon(Icons.code),
+                      SizedBox(
+                        width: 5.0,
+                      ),
+                      Text(
+                        repository.language.toString(),
+                        style: TextStyle(
+                            color: Colors.grey[600],
+                            fontWeight: FontWeight.w500),
+                      ),
+                      SizedBox(
+                        width: 15.0,
+                      ),
+                    ],
                     Icon(Icons.bug_report),
                     SizedBox(
                       width: 5.0,
                     ),
                     Text(
-                      '0',
+                      repository.issues.toString(),
                       style: TextStyle(
                           color: Colors.grey[600], fontWeight: FontWeight.w500),
                     ),
@@ -71,7 +76,7 @@ class RepoTile extends StatelessWidget {
                       width: 5.0,
                     ),
                     Text(
-                      '20',
+                      repository.people.toString(),
                       style: TextStyle(
                           color: Colors.grey[600], fontWeight: FontWeight.w500),
                     ),
